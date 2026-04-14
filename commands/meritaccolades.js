@@ -6,12 +6,12 @@ const MD_EMOJI = '<:MD:1355999248117661717>';
 const MD_EMOJI_ID = '1355999248117661717';
 
 module.exports = {
-  name: '!meritaccoladesvoting',
+  name: '!meritaccolades',
   type: 'prefix',
 
   async execute(message) {
     try {
-      if (message.content.toLowerCase() !== '!meritaccoladesvoting') return;
+      if (message.content.toLowerCase() !== '!meritaccolades') return;
 
       const embed = new EmbedBuilder()
         .setColor(0xF1C40F)
@@ -41,7 +41,7 @@ Again, please be fair and impartial.`
         console.log('Reaction Fehler:', err);
       }
     } catch (err) {
-      console.error('Fehler bei !meritaccoladesvoting:', err);
+      console.error('Fehler bei !meritaccolades:', err);
     }
   }
 };

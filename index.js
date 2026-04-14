@@ -84,12 +84,8 @@ The *Merit Council* role is restricted to Department Directors and Divisional Co
 
 **Merit Officer Role**
 The *Merit Officer* role is restricted to Department Assistant Directors and Divisional Executive Officers.`
-        );
 
-      const embed2 = new EmbedBuilder()
-        .setColor(0xF1C40F)
-        .setDescription(
-`**Department Representative Role**
+**Department Representative Role**
 Each of the three primary departments will have one designated Representative.
 They must hold the rank Senior Officer (Vestige) and be the appointed representative of the department.
 
@@ -127,13 +123,15 @@ Merit Officers and Department Representatives are expected to review the informa
 
 Attended votes will be logged by the Merit Department High Command once it ended.
 
-Again, please be fair and impartial.
-
----`
+Again, please be fair and impartial.`
         );
 
       const sentMessage = await message.channel.send({
-        embeds: [embed]
+        content: `<@&${MERIT_DEPARTMENT_ROLE_ID}>`,
+        embeds: [embed],
+        allowedMentions: {
+          roles: [MERIT_DEPARTMENT_ROLE_ID]
+        }
       });
 
       try {
