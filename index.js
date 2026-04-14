@@ -63,7 +63,6 @@ client.on('messageCreate', async (message) => {
 
     const content = message.content.toLowerCase().trim();
 
-    // ===== !MERITINFORMATION =====
     if (content === '!meritinformation') {
       const embed1 = new EmbedBuilder()
         .setColor(0xF1C40F)
@@ -83,7 +82,7 @@ The Merit Department is tasked with recognizing individuals who go above and bey
 The *Merit Council* role is restricted to Department Directors and Divisional Commanders.
 
 **Merit Officer Role**
-The *Merit Officer* role is restricted to Department Assistant Directors and Divisional Executive Officers.`
+The *Merit Officer* role is restricted to Department Assistant Directors and Divisional Executive Officers.
 
 **Department Representative Role**
 Each of the three primary departments will have one designated Representative.
@@ -110,7 +109,6 @@ Misuse of the ticket system will lead to a nomination blacklist.`
       }
     }
 
-    // ===== !ACCOLADESVOTING =====
     if (content === '!accoladesvoting') {
       const embed = new EmbedBuilder()
         .setColor(0xF1C40F)
@@ -123,7 +121,9 @@ Merit Officers and Department Representatives are expected to review the informa
 
 Attended votes will be logged by the Merit Department High Command once it ended.
 
-Again, please be fair and impartial.`
+Again, please be fair and impartial.
+
+---`
         );
 
       const sentMessage = await message.channel.send({
