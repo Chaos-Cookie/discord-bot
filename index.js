@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const {
   Client,
   GatewayIntentBits,
@@ -54,13 +56,15 @@ client.once('ready', async () => {
   await registerCommands();
 });
 
-// ===== !MERITINFORMATION =====
+// ===== PREFIX COMMANDS =====
 client.on('messageCreate', async (message) => {
   try {
     if (message.author.bot) return;
 
-    if (message.content.toLowerCase() === '!meritinformation') {
+    const content = message.content.toLowerCase().trim();
 
+    // ===== !MERITINFORMATION =====
+    if (content === '!meritinformation') {
       const embed1 = new EmbedBuilder()
         .setColor(0xF1C40F)
         .setDescription(
@@ -103,7 +107,35 @@ Misuse of the ticket system will lead to a nomination blacklist.`
         }
       });
 
-      // Reaction
+      try {
+        await sentMessage.react(MD_EMOJI_ID);
+      } catch (err) {
+        console.log('Reaction Fehler:', err);
+      }
+    }
+
+    // ===== !ACCOLADESVOTING =====
+    if (content === '!accoladesvoting') {
+      const embed = new EmbedBuilder()
+        .setColor(0xF1C40F)
+        .setDescription(
+`# ${MD_EMOJI} **| Accolades Voting**
+
+This channel is used for all active award votings. Each nomination will be posted here with basic information about the nominee, along with supporting evidence.
+
+Merit Officers and Department Representatives are expected to review the information provided and cast their votes accordingly.
+
+Attended votes will be logged by the Merit Department High Command once it ended.
+
+Again, please be fair and impartial.
+
+---`
+        );
+
+      const sentMessage = await message.channel.send({
+        embeds: [embed]
+      });
+
       try {
         await sentMessage.react(MD_EMOJI_ID);
       } catch (err) {
@@ -112,7 +144,7 @@ Misuse of the ticket system will lead to a nomination blacklist.`
     }
 
   } catch (err) {
-    console.error('Fehler bei !meritinformation:', err);
+    console.error('Fehler bei Prefix-Command:', err);
   }
 });
 
