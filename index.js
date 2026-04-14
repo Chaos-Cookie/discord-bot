@@ -62,8 +62,11 @@ client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
 
     const content = message.content.toLowerCase().trim();
+    console.log('Nachricht erkannt:', content);
 
     if (content === '!meritinformation') {
+      console.log('!meritinformation erkannt');
+
       const embed1 = new EmbedBuilder()
         .setColor(0xF1C40F)
         .setDescription(
@@ -95,21 +98,23 @@ Misuse of the ticket system will lead to a nomination blacklist.`
         );
 
       const sentMessage = await message.channel.send({
-        content: `<@&${VERIFIED_ROLE_ID}> <@&${MERIT_DEPARTMENT_ROLE_ID}>`,
+        content: `<@&${MERIT_DEPARTMENT_ROLE_ID}>`,
         embeds: [embed1, embed2],
         allowedMentions: {
-          roles: [VERIFIED_ROLE_ID, MERIT_DEPARTMENT_ROLE_ID]
+          roles: [MERIT_DEPARTMENT_ROLE_ID]
         }
       });
 
       try {
         await sentMessage.react(MD_EMOJI_ID);
       } catch (err) {
-        console.log('Reaction Fehler:', err);
+        console.log('Reaction Fehler bei !meritinformation:', err);
       }
     }
 
     if (content === '!accoladesvoting') {
+      console.log('!accoladesvoting erkannt');
+
       const embed = new EmbedBuilder()
         .setColor(0xF1C40F)
         .setDescription(
@@ -121,9 +126,7 @@ Merit Officers and Department Representatives are expected to review the informa
 
 Attended votes will be logged by the Merit Department High Command once it ended.
 
-Again, please be fair and impartial.
-
----`
+Again, please be fair and impartial.`
         );
 
       const sentMessage = await message.channel.send({
@@ -137,7 +140,7 @@ Again, please be fair and impartial.
       try {
         await sentMessage.react(MD_EMOJI_ID);
       } catch (err) {
-        console.log('Reaction Fehler:', err);
+        console.log('Reaction Fehler bei !accoladesvoting:', err);
       }
     }
 
